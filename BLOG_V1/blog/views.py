@@ -17,13 +17,17 @@ def index(request):
     blog_list = list(blog_posts.keys())
     return render(request, "blog/index.html", {"blog_list": blog_list})
 
-
-def blog_list_by_number(request, blog):
+def details_by_number(request, blog):
     blogs = list(blog_posts.keys())
-
     if blog > len(blogs):
-        return HttpResponseNotFound("you're dumb, bye")
-    
+        return HttpResponseNotFound('Invalid number')
     redirect_blog = blogs[blog - 1]
-    redirect_path = reverse('blog-post', args=[redirect_blog])
+    redirect_path = reverse( 'details', args=[redirect_blog])
     return HttpResponseRedirect(redirect_path)
+
+def details(request, blog):
+    try:
+        blog_text = blog_posts[blog]
+        return render(request, 'blog/details.html', {'text': blog_text, 'blog_name': blog})
+    except:
+        raise Http404()
