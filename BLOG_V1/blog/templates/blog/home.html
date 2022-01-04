@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+  </head>
+  <body>
+    {% comment %} <h1>Home</h1>
+    <h2>Latest Post</h2>
+    <h3>{{blog_title|last}}</h3>
+    {% if blog_text is not None%}
+    <p>{{blog_text|last}}</p>
+    {% else %}
+    <p>There is no text for this blog post yet</p>
+    {% endif %} {% endcomment %}
+
+    
+  </body>
+</html>

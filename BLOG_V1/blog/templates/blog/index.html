@@ -7,11 +7,11 @@
     <title>Blog Posts</title>
 </head>
 <body>
-    <h1>Blog Posts</h1>
+    {% comment %} <h1>Blog Posts</h1>
     <ul>
     {% for blog in blog_list %}
         <li><a href="{% url 'details' blog %}">{{blog|title}}</a></li>
     {% endfor %}
-    </ul>
+    </ul> {% endcomment %}
 </body>
 </html>
