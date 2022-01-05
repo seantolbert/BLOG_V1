@@ -41,10 +41,10 @@ from django.urls import reverse
 #         raise Http404()
 
 def home(request):
-    pass
+    return render(request, 'blog/home.html')
 
 def posts(request):
-    pass
+    return render(request, 'blog/index.html')
 
 def post_detail(request):
     pass

@@ -1,17 +1,60 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog Posts</title>
-</head>
-<body>
-    {% comment %} <h1>Blog Posts</h1>
-    <ul>
-    {% for blog in blog_list %}
-        <li><a href="{% url 'details' blog %}">{{blog|title}}</a></li>
-    {% endfor %}
-    </ul> {% endcomment %}
-</body>
-</html>
+{% extends 'base.html' %} 
+{% load static %}
+{% comment %}
+<h1>Blog Posts</h1>
+<ul>
+  {% for blog in blog_list %}
+  <li><a href="{% url 'details' blog %}">{{blog|title}}</a></li>
+  {% endfor %}
+</ul>
+{% endcomment %} 
+{% block title %}My Blog{% endblock %} {% block content%}
+
+{% block css_files %}
+<link rel='stylesheet' href='{% static "blog/index.css" %}'>
+{% endblock  %}
+
+<header id="main-navigation">
+  <h1><a href="">Sean's Blog</a></h1>
+  <nav><a href="">All Posts</a></nav>
+</header>
+<section id="welcome">
+  <header>
+    <img src="" alt="Sean - the author" />
+    <h2>Sean's Blog</h2>
+  </header>
+  <p>
+    Hey, My name is Sean and I love to talk about tech and the world. Please
+    keep reading and have a great life!!
+  </p>
+</section>
+<section id="latest-posts">
+  <h2>My Latest Posts</h2>
+  <ul>
+    <li>
+      <article clas="post">
+        <a href="">
+          <img src="" alt="Mountain Hiking" />
+          <div class="post__content">
+            <h3>Mountain Hiking</h3>
+            <p>
+              There is nothing like the views you get when kiking mount Django.
+              I was barely ready for the possibilities presented to me.
+            </p>
+          </div>
+        </a>
+      </article>
+    </li>
+  </ul>
+</section>
+<section id="about">
+  <h2>What I Do</h2>
+  <p>
+    I love programming, helping others, and expolring new tech possibilities
+  </p>
+  <p>
+    My mission is to cmaintain steady growth as a developer and answer questions
+    for others on the same path
+  </p>
+</section>
+{% endblock %}
