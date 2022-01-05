@@ -1,51 +1,63 @@
 from django.shortcuts import render
-from django.http import Http404, HttpResponseNotFound, HttpResponseRedirect
 from django.urls import reverse
+from datetime import date
 
-# blog_posts = {
-#     "the first one": "blogging is the coolest I alwys enjoy lettem know whats going on upstairs!",
-#     "the second one": "look another blog post!",
-#     "the third one": "hey im just doing my best out here",
-#     "the fourth one": "what the heck is going on here?",
-# }
+all_posts = [
+    {
+        "slug": "hike-in-the-mountains",
+        "image": "crusty_butt.jpg",
+        "author": "Sean Tolbert",
+        "date": date(2022, 1, 4),
+        "title": "Mountain Hiking",
+        "excerpt": "There was once a long ass striung that deserved to be thrown into a large paragraph format",
+        "content": """
+        Lore;asjnbdvejnvoeifnb'oeinb'eonb'ek
+    'ngwo;ernb[oweirng'irng'pqrng'pewkrn'lweknb
+    'qeppkrgn'werng'pewinb'ekbn'lrkgnbdflkjgnbskdljfbnslkdfjbvklsdjb
+    """,
+    },
+    {
+        "slug": "riding-the-edge",
+        "image": "vale_backside.jpg",
+        "author": "Sean Tolbert",
+        "date": date(2021, 12, 14),
+        "title": "Riding The Edge",
+        "excerpt": "I have really struggled with hoe to justify the views we have up here. Pictures and raw perspective have been my only outlets, but I know there is so much more.",
+        "content": """
+        Lore;asjnbdvejnvoeifnb'oeinb'eonb'ek
+    'ngwo;ernb[oweirng'irng'pqrng'pewkrn'lweknb
+    'qeppkrgn'werng'pewinb'ekbn'lrkgnbdflkjgnbskdljfbnslkdfjbvklsdjb
+    """,
+    },
+    {
+        "slug": "painful-hikes",
+        "image": "shavano.jpg",
+        "author": "Sean Tolbert",
+        "date": date(2021, 4, 15),
+        "title": "Painful Hikes",
+        "excerpt": "still trying to figure out how I crushhed this without passing out.",
+        "content": """
+        Lore;asjnbdvejnvoeifnb'oeinb'eonb'ek
+    'ngwo;ernb[oweirng'irng'pqrng'pewkrn'lweknb
+    'qeppkrgn'werng'pewinb'ekbn'lrkgnbdflkjgnbskdljfbnslkdfjbvklsdjb
+    """,
+    },
+]
 
-# # Create your views here.
-# def home(request):
-#     latest_title = list(blog_posts.keys())
-#     latest_text = list(blog_posts.values())
-    
-#     return render(request, "blog/home.html", {'blog_title': latest_title, 'blog_text': latest_text})
-
-
-# def index(request):
-#     blog_list = list(blog_posts.keys())
-#     return render(request, "blog/index.html", {"blog_list": blog_list})
-
-
-# def details_by_number(request, blog):
-#     blogs = list(blog_posts.keys())
-#     if blog > len(blogs):
-#         return HttpResponseNotFound("Invalid number")
-#     redirect_blog = blogs[blog - 1]
-#     redirect_path = reverse("details", args=[redirect_blog])
-#     return HttpResponseRedirect(redirect_path)
-
-
-# def details(request, blog):
-#     try:
-#         blog_text = blog_posts[blog]
-#         return render(
-#             request, "blog/details.html", {"text": blog_text, "blog_name": blog}
-#         )
-#     except:
-#         raise Http404()
+def get_date(post):
+    return post['date']
 
 def home(request):
-    return render(request, 'blog/index.html')
+    sorted_posts = sorted(all_posts, key=get_date)
+    latest_posts = sorted_posts[-3:]
+    return render(request, "blog/index.html", {
+        'posts': latest_posts
+    })
+
 
 def posts(request):
-    return render(request, 'blog/all-posts.html')
+    return render(request, "blog/all-posts.html")
 
-def post_detail(request):
-    pass
 
+def post_detail(request, slug):
+    return render(request, "blog/details.html")
