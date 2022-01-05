@@ -14,13 +14,9 @@ All My Posts
 <section id='all-posts'>
     <h2>My Collected Posts</h2>
     <ul>
-        {% include 'blog/partials/post.html' %}
-        {% include 'blog/partials/post.html' %}
-        {% include 'blog/partials/post.html' %}
-        {% include 'blog/partials/post.html' %}
-        {% include 'blog/partials/post.html' %}
-        {% include 'blog/partials/post.html' %}
-        {% include 'blog/partials/post.html' %}
+        {% for post in all_posts %}
+            {% include 'blog/partials/post.html' %}
+        {% endfor %}
     </ul>
 </section>
 {% endblock  %}
