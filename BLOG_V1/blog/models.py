@@ -2,10 +2,13 @@ from django.db import models
 from django.urls import reverse
 
 # Create your models here.
+class Tag(models.Model):
+    caption = models.CharField(max_length=300)
+
 class Author(models.Model):
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
-    username = models.CharField(max_length=50)
+    email = models.EmailField(max_length=200)
 
     def full_name(self):
         return f"{self.first_name} {self.last_name}"
@@ -15,12 +18,14 @@ class Author(models.Model):
 
 
 class Post(models.Model):
-    slug = models.SlugField(default="", blank=True, null=False, db_index=True)
-    author = models.ForeignKey(Author, on_delete=models.CASCADE, null=True, related_name="posts")
-    date = models.DateField(auto_now=True, auto_now_add=False)
     title = models.CharField(max_length=200)
     excerpt = models.CharField(max_length=300)
+    image_name = models.CharField(max_length=200)
+    date = models.DateField(auto_now=True)
+    slug = models.SlugField(unique=True)
     content = models.TextField()
+    author = models.ForeignKey(Author, on_delete=models.CASCADE, null=True, related_name="posts")
+    tag = models.ManyToManyField(Tag)
 
     def get_absolute_url(self):
         return reverse("post-detail", args=[self.slug])
