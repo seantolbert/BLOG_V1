@@ -1,13 +1,7 @@
 {% extends 'base.html' %} 
 {% load static %}
-{% comment %}
-<h1>Blog Posts</h1>
-<ul>
-  {% for blog in blog_list %}
-  <li><a href="{% url 'details' blog %}">{{blog|title}}</a></li>
-  {% endfor %}
-</ul>
-{% endcomment %} 
+
+
 {% block title %}My Blog{% endblock %} {% block content%}
 
 {% block css_files %}

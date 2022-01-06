@@ -1,16 +1,14 @@
 from django.shortcuts import render, get_object_or_404
-from django.urls import reverse
 
 from .models import Post
 
-
 def home(request):
-    posts = Post.objects.all()
+    latest_posts = Post.objects.all().order_by("-date")[:3]
     return render(request, "blog/index.html", {
-        'posts': posts
+        'posts': latest_posts
     })
 
-def index(request):
+def posts(request):
     posts = Post.objects.all().order_by("-date")
     num_posts = posts.count()
     return render(request, "blog/all-posts.html", {
@@ -24,6 +22,7 @@ def post_detail(request, slug):
         'title': post.title,
         'author': post.author,
         "content": post.content,
-        "date": post.date
-
+        "date": post.date,
+        "image_name": post.image_name,
+        "post_tags": post.tag.all()
     })
