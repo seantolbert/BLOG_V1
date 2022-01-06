@@ -12,14 +12,14 @@
 
 {% block content %}
 <section id="summary">
-  <h2>{{post.title}}</h2>
+  <h2>{{title}}</h2>
   <article>
-    <img src="{% static 'blog/images/'|add:post.image %}" alt="{{post.title}}" />
-    <address>{{post.author|title}}</address>
-    <div>Last Updated on <time>{{post.date|date:"M d, Y"}}</time></div>
+    {% comment %} <img src="{% static 'blog/images/'|add:post.image %}" alt="{{post.title}}" /> {% endcomment %}
+    <address>{{author|title}}</address>
+    {% comment %} <div>Last Updated on <time>{{date|date:"M d, Y"}}</time></div> {% endcomment %}
   </article>
 </section>
 <main>
-  {{post.content|linebreaks}}
+  {{content|linebreaks}}
 </main>
 {% endblock %}
