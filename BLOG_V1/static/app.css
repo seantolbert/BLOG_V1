@@ -36,6 +36,7 @@
     text-decoration: none;
     color: white;
     font-weight: bold;
+    margin-left: 1rem;
   }
   
   #main-navigation a:hover,
@@ -47,3 +48,4 @@
   #main-navigation h1 a:active {
     color: white;
   }
+
