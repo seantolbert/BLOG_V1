@@ -11,19 +11,19 @@
 
 {% block content %}
 <section id="summary">
-  <h2>{{title}}</h2>
+  <h2>{{post.title}}</h2>
   <div>
     {% for tag in post_tags %}
     <span class='tag'>{{tag}}</span>
     {% endfor %}
   </div>
   <article>
-    <img src="{{image.url}}" alt="{{title}}" />
-    <address>By <a href="mailto:{{author.email}}">{{author|title}}</a></address>
-    <div>Last Updated on <time>{{date|date:"M d, Y"}}</time></div>
+    <img src="{{post.image.url}}" alt="{{post.title}}" />
+    <address>By <a href="mailto:{{post.author.email}}">{{post.author|title}}</a></address>
+    <div>Last Updated on <time>{{post.date|date:"M d, Y"}}</time></div>
   </article>
 </section>
 <main>
-  {{content|linebreaks}}
+  {{post.content|linebreaks}}
 </main>
 {% endblock %}
