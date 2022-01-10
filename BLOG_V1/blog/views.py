@@ -23,6 +23,6 @@ def post_detail(request, slug):
         'author': post.author,
         "content": post.content,
         "date": post.date,
-        "image_name": post.image_name,
+        "image": post.image,
         "post_tags": post.tag.all()
     })
