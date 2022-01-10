@@ -89,3 +89,8 @@ class PostDetailView(View):
 #         "image": post.image,
 #         "post_tags": post.tag.all()
 #     })
+
+
+class ReadLaterView(View):
+    def post(self, request):
+        pass
